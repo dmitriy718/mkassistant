@@ -1,0 +1,35 @@
+{
+  "name": "mkassistant",
+  "version": "1.0.0",
+  "description": "Marketing automation system for Tradeflows Pro - handles social media, email marketing, SEO content, and lead generation",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "nodemon --watch src --exec ts-node src/index.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["marketing", "automation", "social-media", "tradeflows"],
+  "author": "Tradeflows Team",
+  "license": "ISC",
+  "dependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.7.2",
+    "@types/node-cron": "^3.0.11",
+    "axios": "^1.12.2",
+    "better-sqlite3": "^12.4.1",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "facebook-nodejs-business-sdk": "^23.0.2",
+    "linkedin-api-client": "^0.3.0",
+    "node-cron": "^4.2.1",
+    "nodemon": "^3.1.10",
+    "openai": "^6.3.0",
+    "ts-node": "^10.9.2",
+    "twitter-api-v2": "^1.27.0",
+    "typescript": "^5.9.3",
+    "winston": "^3.18.3"
+  }
+}

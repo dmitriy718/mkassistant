@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:tradeflows.net)",
+      "Read(//c/Users/dmitr/Projects/tradeflows-pro/**)",
+      "Bash(npm init -y)",
+      "Bash(mkdir:*)",
+      "Bash(npm run build)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
