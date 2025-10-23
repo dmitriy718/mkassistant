@@ -271,3 +271,8 @@ export function startDashboardServer(): void {
 }
 
 export default app;
+
+// Start server when file is run directly
+if (require.main === module) {
+  startDashboardServer();
+}
