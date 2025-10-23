@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MKAssistant Analytics Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-content">
+        <h1>📊 MKAssistant Analytics</h1>
+        <div class="header-actions">
+          <select id="timeRangeSelector" class="time-selector">
+            <option value="7">Last 7 Days</option>
+            <option value="14">Last 14 Days</option>
+            <option value="30" selected>Last 30 Days</option>
+            <option value="90">Last 90 Days</option>
+          </select>
+          <button onclick="refreshDashboard()" class="refresh-btn">🔄 Refresh</button>
+          <button onclick="exportData()" class="export-btn">📥 Export</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Loading Indicator -->
+    <div id="loading" class="loading">Loading dashboard...</div>
+
+    <!-- Error Message -->
+    <div id="error" class="error hidden"></div>
+
+    <!-- Main Content -->
+    <div id="dashboard-content" class="dashboard-content hidden">
+
+      <!-- Key Metrics Cards -->
+      <section class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon">📝</div>
+          <div class="metric-content">
+            <div class="metric-label">Total Posts</div>
+            <div class="metric-value" id="totalPosts">-</div>
+            <div class="metric-change" id="postsChange">-</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon">👍</div>
+          <div class="metric-content">
+            <div class="metric-label">Total Engagement</div>
+            <div class="metric-value" id="totalEngagement">-</div>
+            <div class="metric-change" id="engagementChange">-</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon">📈</div>
+          <div class="metric-content">
+            <div class="metric-label">Avg Engagement Rate</div>
+            <div class="metric-value" id="avgEngagement">-</div>
+            <div class="metric-change" id="engagementRateChange">-</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon">✅</div>
+          <div class="metric-content">
+            <div class="metric-label">Success Rate</div>
+            <div class="metric-value" id="successRate">-</div>
+            <div class="metric-change" id="successRateChange">-</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts Row 1 -->
+      <section class="charts-row">
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Engagement Timeline</h3>
+          </div>
+          <canvas id="timelineChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Platform Distribution</h3>
+          </div>
+          <canvas id="platformChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Charts Row 2 -->
+      <section class="charts-row">
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Content Category Performance</h3>
+          </div>
+          <canvas id="categoryChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Platform Comparison</h3>
+          </div>
+          <canvas id="comparisonChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Top Posts Table -->
+      <section class="table-section">
+        <div class="section-header">
+          <h3>🏆 Top Performing Posts</h3>
+        </div>
+        <div class="table-container">
+          <table id="topPostsTable" class="data-table">
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Content</th>
+                <th>Likes</th>
+                <th>Comments</th>
+                <th>Shares</th>
+                <th>Engagement Score</th>
+                <th>Published</th>
+              </tr>
+            </thead>
+            <tbody id="topPostsBody">
+              <tr><td colspan="7" class="loading-row">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Recommendations -->
+      <section class="recommendations-section">
+        <div class="section-header">
+          <h3>💡 Recommendations</h3>
+        </div>
+        <div id="recommendations" class="recommendations-list"></div>
+      </section>
+
+      <!-- Recent Posts -->
+      <section class="table-section">
+        <div class="section-header">
+          <h3>📋 Recent Posts</h3>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Content</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Engagement</th>
+                <th>Published</th>
+              </tr>
+            </thead>
+            <tbody id="recentPostsBody">
+              <tr><td colspan="6" class="loading-row">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
