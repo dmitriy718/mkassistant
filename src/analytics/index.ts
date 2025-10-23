@@ -301,14 +301,18 @@ export class AnalyticsManager {
 
     // Recommendation based on top posts
     if (topPosts.length > 0) {
+      // Create safe parameterized query with placeholders
+      const placeholders = topPosts.map(() => '?').join(',');
+      const postIds = topPosts.map(p => p.id);
+
       const topCategories = db.prepare(`
         SELECT post_type, COUNT(*) as count
         FROM posts
-        WHERE id IN (${topPosts.map(p => p.id).join(',')})
+        WHERE id IN (${placeholders})
         GROUP BY post_type
         ORDER BY count DESC
         LIMIT 1
-      `).get() as any;
+      `).get(...postIds) as any;
 
       if (topCategories) {
         recommendations.push(
